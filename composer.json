@@ -2,11 +2,11 @@
     "name": "kornrunner/solidity",
     "description": "Pure PHP implementation of Solidity",
     "keywords": ["solidity"],
-    "license": "G",
+    "license": "GPL-3.0",
     "authors": [
         {
             "name": "Boris Momcilovic",
-            "homepage": "https://github.com/kornrunner/php-keccak"
+            "homepage": "https://github.com/kornrunner/php-solidity"
         }
     ],
     "require": {
