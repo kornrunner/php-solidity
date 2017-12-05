@@ -14,6 +14,19 @@ final class Solidity {
             }
 
             $input = str_pad(dechex($input), 64, $pad, STR_PAD_LEFT);
+        } else {
+            $tmp = mb_detect_encoding($input, 'UTF-8', true) ? utf8_encode($input) : $input;
+            $out = '';
+            for($i = 0; $i < strlen($tmp); $i++) {
+                $code = ord($tmp[$i]);
+                if ($code === 0) {
+                    break;
+                }
+
+                $hex = dechex($code);
+                $out .= strlen($hex) < 2 ? '0' . $hex : $hex;
+            }
+            $input = $out;
         }
 
         return $input;
