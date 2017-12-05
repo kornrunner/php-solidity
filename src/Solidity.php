@@ -1,9 +1,15 @@
 <?php
 namespace kornrunner;
 
+use BN\BN;
+
 final class Solidity {
 
     private static function hex ($input): string {
+        if ($input instanceof BN) {
+            $input = $input->toString();
+        }
+
         if (strpos($input, '0x') === 0) {
             $input = substr($input, 2);
         } elseif (is_numeric($input)) {

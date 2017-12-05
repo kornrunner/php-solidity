@@ -35,6 +35,7 @@ class SolidityTest extends PHPUnit\Framework\TestCase
             [1, '0xb10e2d527612073b26eecdfd717e6a320cf44b4afac2b0732d9fcbe2b7fa0cf6'],
             [-1, '0xa9c584056064687e149968cbab758a3376d22aedc6a55823d1b3ecbee81b8fb9'],
             ['a', '0x3ac225168df54212a25c1c01fd35bebfea408fdac2e31ddd6f80a4bbf9a5f1cb'],
+            [new BN('100'), '0x26700e13983fefbd9cf16da2ed70fa5c6798ac55062a4803121a869731e308d2'],
         ];
     }
 
