@@ -1,5 +1,6 @@
 <?php
 
+use BN\BN;
 use kornrunner\Solidity;
 
 class SolidityTest extends PHPUnit\Framework\TestCase
@@ -16,9 +17,8 @@ class SolidityTest extends PHPUnit\Framework\TestCase
     /**
      * @dataProvider sha3
      */
-    public function testSha3($data, $expectation)
-    {
-        $this->assertEquals(Solidity::sha3($data), $expectation);
+    public function testSha3($data, $expect) {
+        $this->assertEquals(Solidity::sha3($data), $expect);
     }
 
     public static function sha3 (): array {
@@ -31,10 +31,22 @@ class SolidityTest extends PHPUnit\Framework\TestCase
             [self::expires, '0x1d460b64f7b8ba0be629afe9b4ae65333b379985d7ea823ff4c0b8c3b5102153'],
             [self::nonce, '0x036b6384b5eca791c62761152d0c79bb0604c104a5fb6f4eb0703f3154bb3db0'],
             [self::address, '0x5c72003ad77a34d6c7061c57eb81dd46bc248e43cfd5bd64fb43f10c2edb805b'],
+            ['0x0a', '0x0ef9d8f8804d174666011a394cab7901679a8944d24249fd148a6a36071151f8'],
+            [1, '0xb10e2d527612073b26eecdfd717e6a320cf44b4afac2b0732d9fcbe2b7fa0cf6'],
         ];
     }
 
-    public function testSha3Variadic() {
-        $this->assertEquals(Solidity::sha3(self::contractAddress, self::tokenBuy, self::amountBuy, self::tokenSell, self::amountSell, self::expires, self::nonce, self::address), '0xf20f20d357419f696f69e6ff05bc6566b1e6d38814ce4f489d35711e2fd2c481');
+    /**
+     * @dataProvider sha3Variadic
+     */
+    public function testSha3Variadic($args, $expect) {
+        $this->assertEquals(call_user_func_array('\kornrunner\Solidity::sha3', $args), $expect);
+    }
+
+    public static function sha3Variadic (): array {
+        return [
+            [[self::contractAddress, self::tokenBuy, self::amountBuy, self::tokenSell, self::amountSell, self::expires, self::nonce, self::address], '0xf20f20d357419f696f69e6ff05bc6566b1e6d38814ce4f489d35711e2fd2c481'],
+            [['0x0a', 1], '0xf88b7969914a53d588c819dfc61967e9f4955a6acc93ab0e225ee6d463a592cf'],
+        ];
     }
 }
