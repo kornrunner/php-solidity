@@ -33,6 +33,7 @@ class SolidityTest extends PHPUnit\Framework\TestCase
             [self::address, '0x5c72003ad77a34d6c7061c57eb81dd46bc248e43cfd5bd64fb43f10c2edb805b'],
             ['0x0a', '0x0ef9d8f8804d174666011a394cab7901679a8944d24249fd148a6a36071151f8'],
             [1, '0xb10e2d527612073b26eecdfd717e6a320cf44b4afac2b0732d9fcbe2b7fa0cf6'],
+            [-1, '0xa9c584056064687e149968cbab758a3376d22aedc6a55823d1b3ecbee81b8fb9'],
         ];
     }
 

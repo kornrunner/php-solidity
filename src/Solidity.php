@@ -7,7 +7,13 @@ final class Solidity {
         if (strpos($input, '0x') === 0) {
             $input = substr($input, 2);
         } elseif (is_numeric($input)) {
-            $input = str_pad(dechex($input), 64, 0, STR_PAD_LEFT);
+            $pad = '0';
+            if ($input < 0) {
+                $input = PHP_INT_SIZE === 8 ? decbin($input) & 0xFFFFFFFF : decbin($input) >> 1;
+                $pad = 'F';
+            }
+
+            $input = str_pad(dechex($input), 64, $pad, STR_PAD_LEFT);
         }
 
         return $input;
