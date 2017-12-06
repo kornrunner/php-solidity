@@ -36,6 +36,17 @@ class SolidityTest extends PHPUnit\Framework\TestCase
             [-1, '0xa9c584056064687e149968cbab758a3376d22aedc6a55823d1b3ecbee81b8fb9'],
             ['a', '0x3ac225168df54212a25c1c01fd35bebfea408fdac2e31ddd6f80a4bbf9a5f1cb'],
             [new BN('100'), '0x26700e13983fefbd9cf16da2ed70fa5c6798ac55062a4803121a869731e308d2'],
+            ['Hello!%', '0x661136a4267dba9ccdf6bfddb7c00e714de936674c4bdb065a531cf1cb15c7fc'],
+            ['234', '0x61c831beab28d67d1bb40b5ae1a11e2757fa842f031a2d0bc94a7867bc5d26c2'],
+            [0xea, '0x61c831beab28d67d1bb40b5ae1a11e2757fa842f031a2d0bc94a7867bc5d26c2'],
+            [new BN('234'), '0x61c831beab28d67d1bb40b5ae1a11e2757fa842f031a2d0bc94a7867bc5d26c2'],
+            [-23, '0x2c4c6f97bb4e0ddf0268bb2e6bd2ae2d2db3311c05e6819bc6bcef2df485b4b1'],
+            ['0x407D73d8a49eeb85D32Cf465507dd71d507100c1', '0x4e8ebbefa452077428f93c9520d3edd60594ff452a29ac7d2ccc11d47f3ab95b'],
+            ['0x85F43D8a49eeB85d32Cf465507DD71d507100C1d', '0xe88edd4848fdce08c45ecfafd2fbfdefc020a7eafb8178e94c5feaeec7ac0bb4'],
+            ['234564535', '0xb2daf574dc6ceac97e984c8a3ffce3c1ec19e81cc6b18aeea67b3ac2666f4e97'],
+            ['0xfff23243', '0x0ee4597224d3499c72aa0c309b0d0cb80ff3c2439a548c53edb479abfd6927ba'],
+            [true, '0xb10e2d527612073b26eecdfd717e6a320cf44b4afac2b0732d9fcbe2b7fa0cf6'],
+            [false, '0x290decd9548b62a8d60345a988386fc84ba6bc95484008f6362f93160ef3e563'],
         ];
     }
 

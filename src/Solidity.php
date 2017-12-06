@@ -8,6 +8,8 @@ final class Solidity {
     private static function hex ($input): string {
         if ($input instanceof BN) {
             $input = $input->toString();
+        } elseif (is_bool($input)) {
+            $input = (int) $input;
         }
 
         if (strpos($input, '0x') === 0) {
@@ -15,7 +17,7 @@ final class Solidity {
         } elseif (is_numeric($input)) {
             $pad = '0';
             if ($input < 0) {
-                $input = PHP_INT_SIZE === 8 ? decbin($input) & 0xFFFFFFFF : decbin($input) >> 1;
+                $input = PHP_INT_SIZE === 8 ? sprintf('%u', $input & 0xFFFFFFFF) : sprintf('%u', $input);
                 $pad = 'F';
             }
 
