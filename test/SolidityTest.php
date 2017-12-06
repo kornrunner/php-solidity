@@ -62,6 +62,8 @@ class SolidityTest extends PHPUnit\Framework\TestCase
             [[self::contractAddress, self::tokenBuy, self::amountBuy, self::tokenSell, self::amountSell, self::expires, self::nonce, self::address], '0xf20f20d357419f696f69e6ff05bc6566b1e6d38814ce4f489d35711e2fd2c481'],
             [['0x0a', 1], '0xf88b7969914a53d588c819dfc61967e9f4955a6acc93ab0e225ee6d463a592cf'],
             [['a', 1], '0xb5cafab5b83d18303877bb912b2d66ca18ab7390cfd9be8a2e66cc5096e0ea02'],
+            [['Hello!%', -23, '0x85F43D8a49eeB85d32Cf465507DD71d507100C1d'], '0xd8de0e57dc8dbe41e10a10f247f16202be05f03bfaff337dc9358c517a172e74'],
+            [['234564535', '0xfff23243', true, -10], '0x3e27a893dc40ef8a7f0841d96639de2f58a132be5ae466d40087a2cfa83b7179'],
         ];
     }
 }
