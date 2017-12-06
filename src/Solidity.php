@@ -9,7 +9,7 @@ final class Solidity {
         if ($input instanceof BN) {
             $input = $input->toString();
         } elseif (is_bool($input)) {
-            $input = (int) $input;
+            return str_pad(dechex((int) $input), 2, '0', STR_PAD_LEFT);
         }
 
         if (strpos($input, '0x') === 0) {
@@ -18,7 +18,7 @@ final class Solidity {
             $pad = '0';
             if ($input < 0) {
                 $input = PHP_INT_SIZE === 8 ? sprintf('%u', $input & 0xFFFFFFFF) : sprintf('%u', $input);
-                $pad = 'F';
+                $pad = 'f';
             }
 
             $input = str_pad(dechex($input), 64, $pad, STR_PAD_LEFT);
@@ -41,8 +41,8 @@ final class Solidity {
     }
 
     public static function sha3(...$args): string {
-        $hex_data = array_map(__CLASS__ . '::hex', $args);
-
-        return '0x' . Keccak::hash(hex2bin(implode('', $hex_data)), 256);
+        $hex_array = array_map(__CLASS__ . '::hex', $args);
+        $hex_glued = strtolower(implode('', $hex_array));
+        return '0x' . Keccak::hash(hex2bin($hex_glued), 256);
     }
 }
