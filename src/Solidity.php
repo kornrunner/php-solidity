@@ -4,6 +4,7 @@ namespace kornrunner;
 use BN\BN;
 
 final class Solidity {
+    private const HASH_SIZE = 256;
 
     private static function hex ($input): string {
         if ($input instanceof BN) {
@@ -15,34 +16,41 @@ final class Solidity {
         if (strpos($input, '0x') === 0) {
             $input = substr($input, 2);
         } elseif (is_numeric($input)) {
-            $pad = '0';
-            if ($input < 0) {
-                $input = PHP_INT_SIZE === 8 ? sprintf('%u', $input & 0xFFFFFFFF) : sprintf('%u', $input);
-                $pad = 'f';
-            }
-
-            $input = str_pad(dechex($input), 64, $pad, STR_PAD_LEFT);
+            $input = self::int2hex($input);
         } else {
-            $tmp = mb_detect_encoding($input, 'UTF-8', true) ? utf8_encode($input) : $input;
-            $out = '';
-            for($i = 0; $i < strlen($tmp); $i++) {
-                $code = ord($tmp[$i]);
-                if ($code === 0) {
-                    break;
-                }
-
-                $hex = dechex($code);
-                $out .= strlen($hex) < 2 ? '0' . $hex : $hex;
-            }
-            $input = $out;
+            $input = self::string2hex($input);
         }
 
         return $input;
     }
 
+    private static function int2hex($input): string {
+        $pad = '0';
+        if ($input < 0) {
+            $input = sprintf('%u', PHP_INT_SIZE === 8 ? $input & 0xFFFFFFFF : $input);
+            $pad = 'f';
+        }
+
+        return str_pad(dechex($input), 64, $pad, STR_PAD_LEFT);
+    }
+
+    private static function string2hex(string $input): string {
+        $encoded = mb_detect_encoding($input, 'UTF-8', true) ? utf8_encode($input) : $input;
+        $result  = '';
+        for($i = 0; $i < strlen($encoded); $i++) {
+            $code = ord($encoded[$i]);
+            if ($code === 0) {
+                break;
+            }
+
+            $result .= str_pad(dechex($code), 2, '0', STR_PAD_LEFT);
+        }
+        return $result;
+    }
+
     public static function sha3(...$args): string {
         $hex_array = array_map(__CLASS__ . '::hex', $args);
         $hex_glued = strtolower(implode('', $hex_array));
-        return '0x' . Keccak::hash(hex2bin($hex_glued), 256);
+        return '0x' . Keccak::hash(hex2bin($hex_glued), self::HASH_SIZE);
     }
 }
