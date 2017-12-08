@@ -12,7 +12,7 @@
          stopOnFailure="false">
 
     <testsuites>
-        <testsuite name="Keccak Test Suite">
+        <testsuite name="Solidity Test Suite">
             <directory>test</directory>
         </testsuite>
     </testsuites>
