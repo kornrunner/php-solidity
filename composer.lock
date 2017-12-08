@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "kornrunner/keccak",
-            "version": "1.0.0",
+            "version": "1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/kornrunner/php-keccak.git",
-                "reference": "e0ea5a195b92c7c86507b75837e0e13cd5835ca9"
+                "reference": "2a02641eb7f12059f03eb374b2c1238e145c5b37"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kornrunner/php-keccak/zipball/e0ea5a195b92c7c86507b75837e0e13cd5835ca9",
-                "reference": "e0ea5a195b92c7c86507b75837e0e13cd5835ca9",
+                "url": "https://api.github.com/repos/kornrunner/php-keccak/zipball/2a02641eb7f12059f03eb374b2c1238e145c5b37",
+                "reference": "2a02641eb7f12059f03eb374b2c1238e145c5b37",
                 "shasum": ""
             },
             "require": {
@@ -35,7 +35,7 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "MIT"
+                "GPL-3.0"
             ],
             "authors": [
                 {
@@ -48,7 +48,7 @@
                 "keccak",
                 "sha-3"
             ],
-            "time": "2017-12-01T15:46:50+00:00"
+            "time": "2017-12-08T00:04:39+00:00"
         },
         {
             "name": "simplito/bn-php",
