@@ -13,11 +13,17 @@
         "php": ">=7.1.0",
         "kornrunner/keccak": "^1.0",
         "simplito/bn-php": "^1.0",
-        "ext-gmp": "^7.1"
+        "ext-gmp": "^7.1",
+        "ext-mbstring": "*"
     },
     "autoload": {
         "psr-4": {
             "kornrunner\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "kornrunner\\": "test"
         }
     },
     "require-dev": {

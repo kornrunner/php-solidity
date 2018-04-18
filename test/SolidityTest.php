@@ -1,9 +1,11 @@
 <?php
 
-use BN\BN;
-use kornrunner\Solidity;
+namespace kornrunner;
 
-class SolidityTest extends PHPUnit\Framework\TestCase
+use BN\BN;
+use PHPUnit\Framework\TestCase;
+
+class SolidityTest extends TestCase
 {
     private const contractAddress = '0x2a0c0dbecc7e4d658f48e01e3fa353f44050c208';
     private const tokenBuy = '0x0000000000000000000000000000000000000000';
