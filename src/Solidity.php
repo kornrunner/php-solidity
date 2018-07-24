@@ -31,7 +31,7 @@ final class Solidity {
             $pad = 'f';
         }
 
-        return str_pad(dechex($input), 64, $pad, STR_PAD_LEFT);
+        return str_pad((new BN($input))->toString('hex'), 64, $pad, STR_PAD_LEFT);
     }
 
     private static function string2hex(string $input): string {
