@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2876d1761f0d21a145352dc724a1ed5e",
+    "content-hash": "1ca7023f8f3cfce1bfb94d2f4f748730",
     "packages": [
         {
             "name": "kornrunner/keccak",
@@ -2303,7 +2303,6 @@
     "prefer-lowest": false,
     "platform": {
         "php": ">=7.1.0",
-        "ext-gmp": "^7.1",
         "ext-mbstring": "*"
     },
     "platform-dev": []
