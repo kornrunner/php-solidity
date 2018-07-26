@@ -1,8 +1,8 @@
 {
     "name": "kornrunner/solidity",
     "description": "Pure PHP implementation of Solidity",
-    "keywords": ["solidity"],
-    "license": "GPL-3.0",
+    "keywords": ["solidity", "ethereum", "eth"],
+    "license": "MIT",
     "authors": [
         {
             "name": "Boris Momcilovic",
