@@ -53,4 +53,10 @@ final class Solidity {
         $hex_glued = strtolower(implode('', $hex_array));
         return '0x' . Keccak::hash(hex2bin($hex_glued), self::HASH_SIZE);
     }
+    
+    public static function sha256(...$args): string {
+        $hex_array = array_map(__CLASS__ . '::hex', $args);
+        $hex_glued = strtolower(implode('', $hex_array));
+        return '0x' . hash('sha256', $hex_glued);
+    }
 }
