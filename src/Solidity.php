@@ -6,7 +6,7 @@ use BN\BN;
 final class Solidity {
     private const HASH_SIZE = 256;
 
-    private static function hex ($input): string {
+    public static function hex ($input): string {
         if ($input instanceof BN) {
             $input = $input->toString();
         } elseif (is_bool($input)) {
@@ -52,11 +52,5 @@ final class Solidity {
         $hex_array = array_map(__CLASS__ . '::hex', $args);
         $hex_glued = strtolower(implode('', $hex_array));
         return '0x' . Keccak::hash(hex2bin($hex_glued), self::HASH_SIZE);
-    }
-    
-    public static function sha256(...$args): string {
-        $hex_array = array_map(__CLASS__ . '::hex', $args);
-        $hex_glued = strtolower(implode('', $hex_array));
-        return '0x' . hash('sha256', $hex_glued);
     }
 }
