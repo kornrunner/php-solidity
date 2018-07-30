@@ -6,7 +6,7 @@ use BN\BN;
 final class Solidity {
     private const HASH_SIZE = 256;
 
-    private static function hex ($input): string {
+    public static function hex ($input): string {
         if ($input instanceof BN) {
             $input = $input->toString();
         } elseif (is_bool($input)) {
