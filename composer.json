@@ -10,7 +10,7 @@
         }
     ],
     "require": {
-        "php": ">=7.2",
+        "php": ">=7.3",
         "kornrunner/keccak": "^1.0",
         "simplito/bn-php": "^1.0"
     },
