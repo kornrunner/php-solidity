@@ -1,4 +1,4 @@
-# php-solidity [![Build Status](https://travis-ci.org/kornrunner/php-solidity.svg?branch=master)](https://travis-ci.org/kornrunner/php-solidity) [![Build status](https://ci.appveyor.com/api/projects/status/pl5n28jrj9ndvl0v/branch/master?svg=true)](https://ci.appveyor.com/project/kornrunner/php-solidity/branch/master) [![Coverage Status](https://coveralls.io/repos/github/kornrunner/php-solidity/badge.svg?branch=master)](https://coveralls.io/github/kornrunner/php-solidity?branch=master) [![Latest Stable Version](https://poser.pugx.org/kornrunner/solidity/v/stable)](https://packagist.org/packages/kornrunner/solidity)
+# php-solidity [![Build status](https://ci.appveyor.com/api/projects/status/pl5n28jrj9ndvl0v/branch/master?svg=true)](https://ci.appveyor.com/project/kornrunner/php-solidity/branch/master) [![Coverage Status](https://coveralls.io/repos/github/kornrunner/php-solidity/badge.svg?branch=master)](https://coveralls.io/github/kornrunner/php-solidity?branch=master) [![Latest Stable Version](https://poser.pugx.org/kornrunner/solidity/v/stable)](https://packagist.org/packages/kornrunner/solidity)
 
 Pure PHP implementation of Solidity
 
