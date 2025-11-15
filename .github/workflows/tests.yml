@@ -6,68 +6,87 @@ jobs:
 
   linux:
     name: Test on Linux
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
-        php-version: ['7.4', '8.0', '8.1']
+        php-version: ['8.1', '8.2', '8.3', '8.4']
 
     steps:
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 1
+      - uses: actions/checkout@v4
 
-      - run: php${{ matrix.php-version }} -v
-      - run: php${{ matrix.php-version }} -m
-      - run: composer -V
-      - run: composer install --no-progress
-      - run: php${{ matrix.php-version }} vendor/bin/phpunit
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-version }}
+          coverage: none
+
+      - name: Display PHP version
+        run: php -v
+
+      - name: Display PHP modules
+        run: php -m
+
+      - name: Install dependencies
+        run: composer install --no-progress --prefer-dist
+
+      - name: Run tests
+        run: vendor/bin/phpunit
 
   windows:
     name: Test on Windows
-    defaults:
-      run:
-        shell: cmd
     runs-on: windows-latest
     strategy:
       fail-fast: false
       matrix:
-        php-version: ['7.4', '8.0', '8.1']
-        arch: [x64]
-        ts: [nts]
+        php-version: ['8.1', '8.2', '8.3', '8.4']
 
     steps:
-      - name: Setup PHP
-        id: setup-php
-        uses: cmb69/setup-php-sdk@v0.1
-        with:
-          version: ${{matrix.php-version}}
-          arch: ${{matrix.arch}}
-          ts: ${{matrix.ts}}
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 1
+      - uses: actions/checkout@v4
 
-      - run: php -v
-      - run: php -m
-      - run: composer -V
-      - run: composer install --no-progress
-      - run: php vendor/bin/phpunit
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-version }}
+          coverage: none
+
+      - name: Display PHP version
+        run: php -v
+
+      - name: Display PHP modules
+        run: php -m
+
+      - name: Install dependencies
+        run: composer install --no-progress --prefer-dist
+
+      - name: Run tests
+        run: vendor/bin/phpunit
 
   code_coverage:
     name: Code Coverage
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: shivammathur/setup-php@v2
-        with:
-          php-version: 8.0
-          coverage: none
+      - uses: actions/checkout@v4
 
-      - run: composer install --no-progress
-      - run: mkdir -p build/logs
-      - run: phpdbg -qrr vendor/bin/phpunit
-      - run: wget https://github.com/php-coveralls/php-coveralls/releases/download/v2.4.3/php-coveralls.phar
-      - env:
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.3
+          coverage: pcov
+
+      - name: Install dependencies
+        run: composer install --no-progress --prefer-dist
+
+      - name: Create build logs directory
+        run: mkdir -p build/logs
+
+      - name: Run tests with coverage
+        run: vendor/bin/phpunit --coverage-clover build/logs/clover.xml
+
+      - name: Download php-coveralls
+        run: wget https://github.com/php-coveralls/php-coveralls/releases/download/v2.4.3/php-coveralls.phar
+
+      - name: Upload coverage to Coveralls
+        env:
           COVERALLS_REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: php php-coveralls.phar --verbose
